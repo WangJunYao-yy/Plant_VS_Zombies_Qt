@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/proj">
+        <file>graph/Logo.jpg</file>
+        <file>graph/Button.png</file>
+    </qresource>
+</RCC>

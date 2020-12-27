@@ -2,7 +2,10 @@
 #define WIDGET_H
 
 #include <QWidget>
-
+#include "beginwidget.h"
+#include "pause_widget.h"
+#include <QLabel>
+#include <QPushButton>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
@@ -14,8 +17,21 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+    void deal_leave_game();
+    void deal_start_game();
+    //void deal_continue_game();
+private slots:
+    void on_pause_button_clicked();
 
 private:
     Ui::Widget *ui;
+    beginWidget begin_surface;
+    pauseWidget pause_surface;
+    QLabel field;
+    QLabel sunshine_display;
+    QLabel sunshine_number;
+    QPushButton fields[5][9];
+    QLabel plant_images[10];
+    QPushButton plant_cards[10];
 };
 #endif // WIDGET_H

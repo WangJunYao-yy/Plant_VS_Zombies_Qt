@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>graph/Logo.jpg</file>
+        <file>graph/Button.png</file>
+        <file>graph/background1.jpg</file>
+        <file>graph/pause_background.png</file>
+        <file>graph/SeedChooser_Background.png</file>
+        <file>graph/SunBack.png</file>
+        <file>graph/CherryBomb.gif</file>
+        <file>graph/Garlic.gif</file>
+        <file>graph/Peashooter.gif</file>
+        <file>graph/PumpkinHead.gif</file>
+        <file>graph/Repeater.gif</file>
+        <file>graph/SnowPea.gif</file>
+        <file>graph/Squash.gif</file>
+        <file>graph/SunFlower.gif</file>
+        <file>graph/TallNut.gif</file>
+        <file>graph/WallNut.gif</file>
+    </qresource>
+</RCC>
