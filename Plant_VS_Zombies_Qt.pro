@@ -9,10 +9,24 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Bullet.cpp \
+    Map.cpp \
+    Zombie.cpp \
+    beginwidget.cpp \
     main.cpp \
+    pause_widget.cpp \
+    plant.cpp \
+    play.cpp \
     widget.cpp
 
 HEADERS += \
+    Bullet.h \
+    Map.h \
+    Zombie.h \
+    beginwidget.h \
+    pause_widget.h \
+    plant.h \
+    play.h \
     widget.h
 
 FORMS += \
@@ -22,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    src.qrc

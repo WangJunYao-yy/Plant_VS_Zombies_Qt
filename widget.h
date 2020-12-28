@@ -6,6 +6,7 @@
 #include "pause_widget.h"
 #include <QLabel>
 #include <QPushButton>
+#include <QTimer>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
@@ -22,7 +23,7 @@ public:
     //void deal_continue_game();
 private slots:
     void on_pause_button_clicked();
-
+    void onTimeOut();
 private:
     Ui::Widget *ui;
     beginWidget begin_surface;
@@ -31,7 +32,8 @@ private:
     QLabel sunshine_display;
     QLabel sunshine_number;
     QPushButton fields[5][9];
-    QLabel plant_images[10];
+    QLabel plant_block_images;
     QPushButton plant_cards[10];
+    QTimer timer;
 };
 #endif // WIDGET_H

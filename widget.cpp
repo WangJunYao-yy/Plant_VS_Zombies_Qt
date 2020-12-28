@@ -1,7 +1,10 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include "qpixmap.h"
+#include "play.h"
 #include<QDesktopWidget>
+
+extern int sunshine;
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -23,31 +26,19 @@ Widget::Widget(QWidget *parent)
         }
     }
 
-    {
-        plant_images[0].setPixmap(QPixmap(":/images/graph/SunFlower.gif"));
-        plant_images[1].setPixmap(QPixmap(":/images/graph/Peashooter.gif"));
-        plant_images[2].setPixmap(QPixmap(":/images/graph/Repeater.gif"));
-        plant_images[3].setPixmap(QPixmap(":/images/graph/SnowPea.gif"));
-        plant_images[4].setPixmap(QPixmap(":/images/graph/WallNut.gif"));
-        plant_images[5].setPixmap(QPixmap(":/images/graph/TallNut.gif"));
-        plant_images[6].setPixmap(QPixmap(":/images/graph/Squash.gif"));
-        plant_images[7].setPixmap(QPixmap(":/images/graph/CherryBomb.gif"));
-        plant_images[8].setPixmap(QPixmap(":/images/graph/Garlic.gif"));
-        plant_images[9].setPixmap(QPixmap(":/images/graph/PumpkinHead.gif"));
-
-    }
+    plant_block_images.setParent(this);
+    plant_block_images.move(150, 20);
+    plant_block_images.setFixedSize(800, 100);
+    plant_block_images.setPixmap(QPixmap(":/images/graph/plant_choice_block.jpg"));
+    plant_block_images.raise();
 
     for(int i = 0; i < 10; i++){
-        plant_images[i].setParent(this);
+
         plant_cards[i].setParent(this);
-
-        plant_images[i].raise();
-
-        plant_images[i].move(80 * i + 150, 20);
         plant_cards[i].move(80 * i + 150, 20);
 
         plant_cards[i].setFixedSize(80, 100);
-        plant_cards[i].setStyleSheet("border-image: url(:/images/graph/SeedChooser_Background.png);");
+        //plant_cards[i].setStyleSheet("border-image: url(:/images/graph/SeedChooser_Background.png);");
         plant_cards[i].setFlat(true);
     }
 
@@ -58,7 +49,7 @@ Widget::Widget(QWidget *parent)
 
     sunshine_number.setParent(this);
     sunshine_number.move(80,30);
-    sunshine_number.setText("100");
+    sunshine_number.setText(QString::number(sunshine));
 
     QDesktopWidget w;
     int deskWidth = w.availableGeometry().width();
@@ -76,6 +67,10 @@ Widget::Widget(QWidget *parent)
     connect(&pause_surface, &pauseWidget::leave_game, this, &Widget::deal_leave_game);
     connect(&pause_surface, &pauseWidget::continue_game, this, &Widget::deal_start_game);
 
+
+    timer.setInterval(300);
+    connect(&timer,SIGNAL(timeout()),this,SLOT(onTimeOut()));
+    timer.start(300);
 }
 
 Widget::~Widget()
@@ -93,10 +88,18 @@ void Widget::deal_start_game(){
     begin_surface.close();
     pause_surface.close();
     this->show();
+    timer.start(300);
 }
 
 void Widget::on_pause_button_clicked()
 {
     this->hide();
+    timer.stop();
     pause_surface.show();
 }
+
+void Widget::onTimeOut(){
+    Do_everything();
+    sunshine_number.setText(QString::number(sunshine));
+}
+
